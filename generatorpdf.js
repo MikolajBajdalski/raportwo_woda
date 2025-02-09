@@ -1,29 +1,67 @@
 /********************************************
- * 1) Wczytanie danych z Zgłoszenia.json i inicjalizacja listy sekcji
+ * 0) KONFIGURACJA ASANY
  ********************************************/
-fetch("Zgłoszenia.json")
-  .then((response) => response.json())
-  .then((data) => {
-    // Wstawienie JSON do pola tekstowego
-    document.getElementById("jsonInput").value = JSON.stringify(data, null, 2);
+const ASANA_PERSONAL_ACCESS_TOKEN =
+  "2/1156801977163652/1209359631182765:a0e0bf82fe2c88c3599a411868ac87cc";
+// ↑ Wstaw tutaj swój prawdziwy Personal Access Token
 
-    // Pobranie unikalnych sekcji z obiektu data
-    const sections = [
-      ...new Set(data.data.map((item) => item.memberships[0].section.name)),
-    ];
-    const sectionSelect = document.getElementById("sectionSelect");
+const PROJECT_ID = "1209311081228152"; // Zmień na ID swojego projektu Asany
 
-    // Wypełnienie selecta unikalnymi sekcjami
-    sections.forEach((section) => {
-      const option = document.createElement("option");
-      option.value = section;
-      option.textContent = section;
-      sectionSelect.appendChild(option);
-    });
-  })
-  .catch((error) =>
-    console.error("Błąd ładowania pliku Zgłoszenia.json:", error)
-  );
+// Zmienna do przechowywania danych pobranych z Asany
+let asanaData = null;
+
+/********************************************
+ * POBIERANIE DANYCH Z ASANY
+ ********************************************/
+function fetchAsanaData() {
+  const url = `https://app.asana.com/api/1.0/projects/${PROJECT_ID}/tasks?opt_fields=memberships.section.name,name,notes,due_on`;
+
+  return fetch(url, {
+    headers: {
+      Authorization: `Bearer ${ASANA_PERSONAL_ACCESS_TOKEN}`,
+    },
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Błąd pobierania z Asany: ${response.status}`);
+    }
+    return response.json();
+  });
+}
+
+/********************************************
+ * 1) ŁADOWANIE DANYCH I INICJALIZACJA LISTY SEKCJI
+ ********************************************/
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAsanaData()
+    .then((data) => {
+      // Zachowaj dane w zmiennej globalnej
+      asanaData = data;
+
+      // Pobranie unikalnych sekcji z obiektu data
+      const sections = [
+        ...new Set(data.data.map((item) => item.memberships[0].section.name)),
+      ];
+      const sectionSelect = document.getElementById("sectionSelect");
+
+      // Wypełnienie <select> unikalnymi sekcjami
+      sections.forEach((section) => {
+        const option = document.createElement("option");
+        option.value = section;
+        option.textContent = section;
+        sectionSelect.appendChild(option);
+      });
+    })
+    .catch((error) => console.error("Błąd ładowania danych z Asany:", error));
+
+  // Obsługa kliknięcia przycisków
+  document
+    .getElementById("generatePdfBtn")
+    .addEventListener("click", () => generatePDF(true));
+
+  document
+    .getElementById("previewPdfBtn")
+    .addEventListener("click", () => generatePDF(false));
+});
 
 /********************************************
  * 2) Funkcja pomocnicza do wczytywania LOGO.jpg
@@ -43,34 +81,24 @@ function getLogoAsBase64(url) {
 }
 
 /********************************************
- * 3) Nasłuchiwanie kliknięcia na przyciski
- ********************************************/
-document
-  .getElementById("generatePdfBtn")
-  .addEventListener("click", () => generatePDF(true));
-
-document
-  .getElementById("previewPdfBtn")
-  .addEventListener("click", () => generatePDF(false));
-
-/********************************************
- * 4) Główna funkcja generująca PDF
+ * 3) GŁÓWNA FUNKCJA GENERUJĄCA PDF
  ********************************************/
 async function generatePDF(download = true) {
-  const jsonInput = document.getElementById("jsonInput").value;
-  const selectedSection = document.getElementById("sectionSelect").value;
-  let jsonData;
-
-  // 4.1) Przetwarzanie wpisanego / wczytanego JSON
-  try {
-    jsonData = JSON.parse(jsonInput);
-  } catch (error) {
-    alert("Niepoprawny format JSON");
+  // Upewnij się, że mamy dane z Asany
+  if (!asanaData) {
+    alert("Brak danych z Asany (jeszcze się nie wczytały lub wystąpił błąd).");
     return;
   }
 
-  // 4.2) Filtrowanie danych na podstawie wybranej sekcji
-  const filteredData = jsonData.data.filter(
+  // Sprawdź, jaka sekcja jest wybrana
+  const selectedSection = document.getElementById("sectionSelect").value;
+  if (!selectedSection) {
+    alert("Wybierz sekcję!");
+    return;
+  }
+
+  // Filtrowanie danych na podstawie wybranej sekcji
+  const filteredData = asanaData.data.filter(
     (item) => item.memberships[0].section.name === selectedSection
   );
 
@@ -79,10 +107,9 @@ async function generatePDF(download = true) {
     return;
   }
 
-  // 4.3) Pobranie pliku LOGO.jpg jako base64
+  // Pobranie pliku LOGO.jpg jako base64
   let logoBase64;
   try {
-    // Jeśli LOGO.jpg leży w tym samym folderze co index.html:
     logoBase64 = await getLogoAsBase64("LOGO.jpg");
   } catch (err) {
     console.error("Błąd pobierania LOGO:", err);
@@ -90,14 +117,14 @@ async function generatePDF(download = true) {
     return;
   }
 
-  // 4.4) Funkcja generująca tabele (z poszczególnych wpisów)
+  // Funkcja generująca tabele (z poszczególnych wpisów)
   function generateTablesForEntries(entries) {
     return entries
       .map((entry, index) => {
         // Rozbijamy notatki na linie
         const notesLines = entry.notes
-          .split("\n")
-          .filter((line) => line.trim() !== "");
+          ? entry.notes.split("\n").filter((line) => line.trim() !== "")
+          : [];
 
         // Pomocnicza funkcja - odczytuje wartość w wierszu tuż za podaną etykietą
         function findValue(label) {
@@ -134,8 +161,6 @@ async function generatePDF(download = true) {
           (() => {
             const currentDate = new Date();
             const formattedDate = currentDate.toISOString().slice(0, 10);
-
-            // a dopiero potem zwróć obiekt, który pdfMake wstawi do treści
             return {
               text: `Data wygenerowania: ${formattedDate}`,
               alignment: "center",
@@ -188,15 +213,12 @@ async function generatePDF(download = true) {
                 [
                   "Współrzędne awarii",
                   (function () {
-                    // Odczytujemy surową wartość, np. "52.7826..., 18.7226..."
                     const coordsString = findValue("Współrzędne awarii");
-
-                    // Budujemy link do Google Maps (wersja /search/ z parametrem &query=)
+                    if (coordsString === "Brak danych") return coordsString;
+                    // Link do Google Maps
                     const googleMapsUrl =
                       "https://www.google.com/maps/search/?api=1&query=" +
                       encodeURIComponent(coordsString);
-
-                    // Zwracamy obiekt, który pdfMake wyrenderuje jako klikalny link
                     return {
                       text: coordsString,
                       link: googleMapsUrl,
@@ -221,11 +243,11 @@ async function generatePDF(download = true) {
                 ["Użyte materiały", findList("Użyte materiały")],
                 [
                   "Link do dokumentacji zdjęciowej",
-                  {
-                    text: findValue("Link do dokumentacji zdjęciowej"),
-                    link: findValue("Link do dokumentacji zdjęciowej"),
-                    target: "_blank",
-                  },
+                  (() => {
+                    const link = findValue("Link do dokumentacji zdjęciowej");
+                    if (link === "Brak danych") return link;
+                    return { text: link, link: link, target: "_blank" };
+                  })(),
                 ],
               ],
             },
@@ -236,12 +258,9 @@ async function generatePDF(download = true) {
       .flat();
   }
 
-  /********************************************
-   * 4.5) Definicja dokumentu PDF (docDefinition) dla pdfMake
-   *      z LOGO w headerze powtarzanym na każdej stronie
-   ********************************************/
+  // Definicja dokumentu PDF (docDefinition)
   const docDefinition = {
-    // Własność "header" jest rysowana na każdej stronie
+    // Nagłówek powtarzany na każdej stronie
     header: {
       margin: [0, 25, 0, 10],
       columns: [
@@ -254,11 +273,7 @@ async function generatePDF(download = true) {
         { width: "*", text: "" },
       ],
     },
-
-    // Treść główna (tabele, teksty)
     content: generateTablesForEntries(filteredData),
-
-    // Style
     styles: {
       header: { fontSize: 18, bold: true },
       subheader: { fontSize: 14, bold: true },
@@ -269,13 +284,10 @@ async function generatePDF(download = true) {
         alignment: "center",
       },
     },
-    // Zwiększamy górny margines, by treść nie zachodziła na nagłówek
     pageMargins: [40, 80, 40, 40], // left, top, right, bottom
   };
 
-  /********************************************
-   * 4.6) Pobieranie (download) lub otwieranie (open) PDF
-   ********************************************/
+  // Pobieranie (download) lub otwieranie (open) PDF
   if (download) {
     pdfMake.createPdf(docDefinition).download(`raport_${selectedSection}.pdf`);
   } else {
