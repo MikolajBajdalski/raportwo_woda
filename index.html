@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generator PDF</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script defer src="generatorpdf.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Generator PDF</h1>
+      <!-- Wybór sekcji -->
+      <label for="sectionSelect">Wybierz sekcję:</label>
+      <select id="sectionSelect"></select>
+
+      <!-- Pole do wklejenia JSON -->
+      <textarea id="jsonInput"></textarea>
+
+      <!-- Przyciski do generowania i podglądu PDF -->
+      <button id="generatePdfBtn">Generuj PDF</button>
+      <button id="previewPdfBtn">Podgląd PDF</button>
+    </div>
+  </body>
+</html>

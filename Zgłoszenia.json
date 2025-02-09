@@ -1,0 +1,204 @@
+{
+  "data": [
+    {
+      "gid": "1209357266738578",
+      "actual_time_minutes": null,
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": null,
+      "created_at": "2025-02-08T16:00:44.725Z",
+      "due_at": null,
+      "due_on": null,
+      "followers": [
+        {
+          "gid": "1156801977163652",
+          "name": "Mikołaj Bajdalski",
+          "resource_type": "user"
+        }
+      ],
+      "hearted": false,
+      "hearts": [],
+      "liked": false,
+      "likes": [],
+      "memberships": [
+        {
+          "project": {
+            "gid": "1209311081228152",
+            "name": "Zgłoszenia Wodociągi 2025",
+            "resource_type": "project"
+          },
+          "section": {
+            "gid": "1209357266738573",
+            "name": "Wzór",
+            "resource_type": "section"
+          }
+        }
+      ],
+      "modified_at": "2025-02-08T16:24:57.573Z",
+      "name": "Nazwisko Imie nr Tel zgłaszającego",
+      "notes": "Informacje z przyjęcia awarii\n\nAdres miejsca awarii\n\n\nOpis zgłoszenia\n\n\n\nInformacje po zakończeniu awarii\n\nWspółrzędne awarii\n\n\nCzy usytuowanie sieci wodociągowej na mapie zasadniczej w Geoportalu jest zgodne ze stanem faktycznym ?\n\n\nOpis awarii\n\n\nData i godzina usunięcia awarii\n\n\nZakres wykonanych prac przy usunięciu awarii\n\n\nUżyte materiały\n\n\nLink do dokumentacji zdjęciowej\n\n\n\n\n",
+      "num_hearts": 0,
+      "num_likes": 0,
+      "parent": null,
+      "permalink_url": "https://app.asana.com/0/1209311081228152/1209357266738578",
+      "projects": [
+        {
+          "gid": "1209311081228152",
+          "name": "Zgłoszenia Wodociągi 2025",
+          "resource_type": "project"
+        }
+      ],
+      "resource_type": "task",
+      "start_at": null,
+      "start_on": null,
+      "subtasks": [],
+      "tags": [],
+      "resource_subtype": "default_task",
+      "workspace": {
+        "gid": "1156801977163655",
+        "name": "karo-net.com",
+        "resource_type": "workspace"
+      }
+    },
+    {
+      "gid": "1209013895879864",
+      "actual_time_minutes": null,
+      "assignee": null,
+      "assignee_status": "inbox",
+      "completed": false,
+      "completed_at": null,
+      "created_at": "2025-02-02T07:57:25.334Z",
+      "due_at": "2025-02-02T07:50:00.000Z",
+      "due_on": "2025-02-02",
+      "followers": [
+        {
+          "gid": "1156801977163652",
+          "name": "Mikołaj Bajdalski",
+          "resource_type": "user"
+        },
+        {
+          "gid": "1158947008413906",
+          "name": "Roman Bajdalski",
+          "resource_type": "user"
+        }
+      ],
+      "hearted": false,
+      "hearts": [],
+      "liked": false,
+      "likes": [],
+      "memberships": [
+        {
+          "project": {
+            "gid": "1209311081228152",
+            "name": "Zgłoszenia Wodociągi 2025",
+            "resource_type": "project"
+          },
+          "section": {
+            "gid": "1209311081228160",
+            "name": "Styczeń 2025",
+            "resource_type": "section"
+          }
+        }
+      ],
+      "modified_at": "2025-02-08T16:33:59.905Z",
+      "name": "Kudlińska Dominika 531461440",
+      "notes": "Informacje z przyjęcia awarii\n\nAdres miejsca awarii\nWincentego Witosa 6, 87-702 Koneck\nOpis zgłoszenia\nWyciek wody z pod ziemi na jezdnie\n\nInformacje po zakończeniu awarii\n\nWspółrzędne awarii\n 52.78260142341604, 18.722614172103807\nCzy usytuowanie sieci wodociągowej na mapie zasadniczej w Geoportalu jest zgodne ze stanem faktycznym ?\nTAK\nOpis awarii\nNieszczelność na uszczelce na przyłączu\nData i godzina usunięcia awarii\n03.02.2025 16:00\nZakres wykonanych prac przy usunięciu awarii\n    Dokonanie wykopu\n    Zdjęcie uszkodzonego przyłącza\n    Założenie opaski naprawczej\n    Wykonanie nowego przyłącza\n    Zakopanie wykopu\n\nUżyte materiały\n    Opaska naprawcza 90 DN \n    2x Kolana PE 25mm\n    0,5m rura PE 25mm\n\nLink do dokumentacji zdjęciowej\nhttps://photos.app.goo.gl/nVQLzqx7t47rnGce6\n\n\n\n\n",
+      "num_hearts": 0,
+      "num_likes": 0,
+      "parent": null,
+      "permalink_url": "https://app.asana.com/0/1209311081228152/1209013895879864",
+      "projects": [
+        {
+          "gid": "1209311081228152",
+          "name": "Zgłoszenia Wodociągi 2025",
+          "resource_type": "project"
+        }
+      ],
+      "resource_type": "task",
+      "start_at": null,
+      "start_on": null,
+      "subtasks": [],
+      "tags": [
+        {
+          "gid": "1209357266738582",
+          "name": "Awaria Wodociągu",
+          "resource_type": "tag"
+        }
+      ],
+      "resource_subtype": "default_task",
+      "workspace": {
+        "gid": "1156801977163655",
+        "name": "karo-net.com",
+        "resource_type": "workspace"
+      }
+    },
+    {
+      "gid": "1209357266738585",
+      "actual_time_minutes": null,
+      "assignee": null,
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": null,
+      "created_at": "2025-02-08T19:38:26.831Z",
+      "due_at": null,
+      "due_on": "2025-02-05",
+      "followers": [
+        {
+          "gid": "1156801977163652",
+          "name": "Mikołaj Bajdalski",
+          "resource_type": "user"
+        }
+      ],
+      "hearted": false,
+      "hearts": [],
+      "liked": false,
+      "likes": [],
+      "memberships": [
+        {
+          "project": {
+            "gid": "1209311081228152",
+            "name": "Zgłoszenia Wodociągi 2025",
+            "resource_type": "project"
+          },
+          "section": {
+            "gid": "1209311081228160",
+            "name": "Styczeń 2025",
+            "resource_type": "section"
+          }
+        }
+      ],
+      "modified_at": "2025-02-08T19:43:19.328Z",
+      "name": "Kowalski Jan 66655544",
+      "notes": "Informacje z przyjęcia awarii\n\nAdres miejsca awarii\nBrzeźno 8, 87-702 Koneck\nOpis zgłoszenia\nLeci z hydrantu\n\nInformacje po zakończeniu awarii\n\nWspółrzędne awarii\n52.8176533254198, 18.728006306071684\nCzy usytuowanie sieci wodociągowej na mapie zasadniczej w Geoportalu jest zgodne ze stanem faktycznym ?\nNIE\nOpis awarii\nNieszczelność na uszczelce hydrantu\nData i godzina usunięcia awarii\n2025-02-06 17:30\nZakres wykonanych prac przy usunięciu awarii\n    Wykręcenie hydrantu\n    Założenie nowej uszczelki\n    Wkręcenie hydrantu\n\nUżyte materiały\n    Młotek\n    Uszczelka\n\nLink do dokumentacji zdjęciowej\nhttps://translate.google.pl/?hl=pl&sl=en&tl=pl&op=translate\n\n\n",
+      "num_hearts": 0,
+      "num_likes": 0,
+      "parent": null,
+      "permalink_url": "https://app.asana.com/0/1209311081228152/1209357266738585",
+      "projects": [
+        {
+          "gid": "1209311081228152",
+          "name": "Zgłoszenia Wodociągi 2025",
+          "resource_type": "project"
+        }
+      ],
+      "resource_type": "task",
+      "start_at": null,
+      "start_on": null,
+      "subtasks": [],
+      "tags": [
+        {
+          "gid": "1209357272762978",
+          "name": "Awaria Hydrantu",
+          "resource_type": "tag"
+        }
+      ],
+      "resource_subtype": "default_task",
+      "workspace": {
+        "gid": "1156801977163655",
+        "name": "karo-net.com",
+        "resource_type": "workspace"
+      }
+    }
+  ]
+}
