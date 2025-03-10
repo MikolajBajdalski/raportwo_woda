@@ -298,11 +298,11 @@ async function generatePDF(download = true) {
                   // Podpis prawy
                   { text: "", margin: [0, 25, 0, 25] },
                   {
-                    text: ".....................................",
+                    text: "....................................................................................",
                     alignment: "center",
                   },
                   {
-                    text: "Podpis Wykonawcy",
+                    text: "Podpis Wykonawcy lub osoby upoważnionej",
                     alignment: "center",
                     fontSize: 10,
                     margin: [0, 5, 0, 0],
