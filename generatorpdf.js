@@ -154,7 +154,7 @@ async function generatePDF(download = true) {
           index > 0 ? { text: "", pageBreak: "before" } : {},
 
           {
-            text: `Raport Awarii ${selectedSection}`,
+            text: `Raport miesięczny ${selectedSection}`,
             style: "header",
             alignment: "center",
           },
@@ -168,7 +168,7 @@ async function generatePDF(download = true) {
             };
           })(),
           {
-            text: `Dane zgłaszającego: ${entry.name}`,
+            text: `Adres awarii: ${entry.name}`,
             style: "subheader",
             margin: [0, 20, 0, 5],
           },
@@ -191,7 +191,11 @@ async function generatePDF(download = true) {
                   },
                   {},
                 ],
-                ["Adres miejsca awarii", findValue("Adres miejsca awarii")],
+                [
+                  "Dane zgłaszającego",
+                  findValue("Nazwisko Imie zgłaszającego"),
+                ],
+                ["Nr tel zgłaszającego", findValue("Nr tel zgłaszającego")],
                 ["Opis zgłoszenia", findValue("Opis zgłoszenia")],
               ],
             },
@@ -241,17 +245,71 @@ async function generatePDF(download = true) {
                   findList("Zakres wykonanych prac przy usunięciu awarii"),
                 ],
                 ["Użyte materiały", findList("Użyte materiały")],
-                [
-                  "Link do dokumentacji zdjęciowej",
-                  (() => {
-                    const link = findValue("Link do dokumentacji zdjęciowej");
-                    if (link === "Brak danych") return link;
-                    return { text: link, link: link, target: "_blank" };
-                  })(),
-                ],
+                // [
+                //   "Link do dokumentacji zdjęciowej",
+                //   (() => {
+                //     const link = findValue("Link do dokumentacji zdjęciowej");
+                //     if (link === "Brak danych") return link;
+                //     return { text: link, link: link, target: "_blank" };
+                //   })(),
+                // ],
               ],
             },
             margin: [0, 10, 0, 20],
+          },
+          {
+            margin: [0, 10, 0, 0],
+            columns: [
+              {
+                width: "100%",
+                stack: [
+                  {
+                    text: "Stwierdza się, że ww. awaria została usunięta. Na tym protokół zakończono i podpisano.",
+                    alignment: "center",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            margin: [0, 30, 0, 0], // odstęp od poprzedniego elementu
+            columns: [
+              // {
+              //   width: "50%",
+              //   stack: [
+              //     // Podpis lewy
+              //     { text: "", margin: [0, 0, 0, 25] },
+              //     // można dać pustą linię, żeby zostawić miejsce na podpis "odręczny"
+              //     {
+              //       text: ".....................................",
+              //       alignment: "center",
+              //     },
+              //     {
+              //       text: "Podpis zgłaszającego awarię",
+              //       alignment: "center",
+              //       fontSize: 10,
+              //       margin: [0, 5, 0, 0],
+              //     },
+              //   ],
+              // },
+              {
+                width: "100%",
+                stack: [
+                  // Podpis prawy
+                  { text: "", margin: [0, 25, 0, 25] },
+                  {
+                    text: ".....................................",
+                    alignment: "center",
+                  },
+                  {
+                    text: "Podpis Wykonawcy",
+                    alignment: "center",
+                    fontSize: 10,
+                    margin: [0, 5, 0, 0],
+                  },
+                ],
+              },
+            ],
           },
         ];
       })
