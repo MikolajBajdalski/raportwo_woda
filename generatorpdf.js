@@ -272,7 +272,7 @@ async function generatePDF(download = true) {
             ],
           },
           {
-            margin: [0, 0, 0, 55], // odstęp od poprzedniego elementu
+            margin: [0, 0, 0, 155], // odstęp od poprzedniego elementu
             columns: [
               // {
               //   width: "50%",
@@ -296,7 +296,7 @@ async function generatePDF(download = true) {
                 width: "100%",
                 stack: [
                   // Podpis prawy
-                  { text: "", margin: [0, 25, 0, 55] },
+                  { text: "", margin: [0, 25, 0, 155] },
                   {
                     text: "....................................................................................",
                     alignment: "center",
@@ -305,7 +305,7 @@ async function generatePDF(download = true) {
                     text: "Podpis Wykonawcy lub osoby upoważnionej",
                     alignment: "center",
                     fontSize: 10,
-                    margin: [0, 5, 0, 0],
+                    margin: [0, 0, 0, 0],
                   },
                 ],
               },
