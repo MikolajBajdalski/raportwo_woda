@@ -258,7 +258,7 @@ async function generatePDF(download = true) {
             // margin: [0, 0, 0, 0],
           },
           {
-            // margin: [0, 0, 0, 0],
+            margin: [0, 10, 0, 0],
             columns: [
               {
                 width: "100%",
@@ -305,7 +305,7 @@ async function generatePDF(download = true) {
                     text: "Podpis Wykonawcy lub osoby upoważnionej",
                     alignment: "center",
                     fontSize: 10,
-                    // margin: [0, 0, 0, 0],
+                    margin: [0, 20, 0, 0],
                   },
                 ],
               },
@@ -320,7 +320,7 @@ async function generatePDF(download = true) {
   const docDefinition = {
     // Nagłówek powtarzany na każdej stronie
     header: {
-      margin: [0, 15, 0, 10],
+      margin: [0, 15, 0, 40],
       columns: [
         { width: "*", text: "" },
         {
