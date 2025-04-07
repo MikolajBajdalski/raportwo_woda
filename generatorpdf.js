@@ -320,7 +320,7 @@ async function generatePDF(download = true) {
   const docDefinition = {
     // Nagłówek powtarzany na każdej stronie
     header: {
-      margin: [0, 40, 0, 10],
+      margin: [0, 10, 0, 10],
       columns: [
         { width: "*", text: "" },
         {
@@ -342,7 +342,7 @@ async function generatePDF(download = true) {
         alignment: "center",
       },
     },
-    pageMargins: [40, 40, 40, 20], // left, top, right, bottom
+    pageMargins: [40, 80, 40, 20], // left, top, right, bottom
   };
 
   // Pobieranie (download) lub otwieranie (open) PDF
