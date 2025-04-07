@@ -272,7 +272,7 @@ async function generatePDF(download = true) {
             ],
           },
           {
-            margin: [0, 0, 0, 0], // odstęp od poprzedniego elementu
+            margin: [0, 55, 0, 0], // odstęp od poprzedniego elementu
             columns: [
               // {
               //   width: "50%",
