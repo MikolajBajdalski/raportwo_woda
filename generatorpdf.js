@@ -342,7 +342,7 @@ async function generatePDF(download = true) {
         alignment: "center",
       },
     },
-    pageMargins: [40, 80, 40, 20], // left, top, right, bottom
+    pageMargins: [40, 40, 40, 20], // left, top, right, bottom
   };
 
   // Pobieranie (download) lub otwieranie (open) PDF
