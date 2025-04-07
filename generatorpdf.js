@@ -272,7 +272,7 @@ async function generatePDF(download = true) {
             ],
           },
           {
-            margin: [0, 30, 0, 0], // odstęp od poprzedniego elementu
+            margin: [0, 0, 0, 0], // odstęp od poprzedniego elementu
             columns: [
               // {
               //   width: "50%",
@@ -296,7 +296,7 @@ async function generatePDF(download = true) {
                 width: "100%",
                 stack: [
                   // Podpis prawy
-                  { text: "", margin: [0, 25, 0, 25] },
+                  { text: "", margin: [0, 25, 0, 55] },
                   {
                     text: "....................................................................................",
                     alignment: "center",
