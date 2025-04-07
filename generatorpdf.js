@@ -272,7 +272,7 @@ async function generatePDF(download = true) {
             ],
           },
           {
-            margin: [0, 0, 0, 155], // odstęp od poprzedniego elementu
+            margin: [0, 0, 0, 0], // odstęp od poprzedniego elementu
             columns: [
               // {
               //   width: "50%",
@@ -296,7 +296,7 @@ async function generatePDF(download = true) {
                 width: "100%",
                 stack: [
                   // Podpis prawy
-                  { text: "", margin: [0, 25, 0, 155] },
+                  { text: "", margin: [0, 0, 0, 0] },
                   {
                     text: "....................................................................................",
                     alignment: "center",
@@ -320,7 +320,7 @@ async function generatePDF(download = true) {
   const docDefinition = {
     // Nagłówek powtarzany na każdej stronie
     header: {
-      margin: [0, 25, 0, 10],
+      margin: [0, 15, 0, 10],
       columns: [
         { width: "*", text: "" },
         {
@@ -342,7 +342,7 @@ async function generatePDF(download = true) {
         alignment: "center",
       },
     },
-    pageMargins: [40, 80, 40, 40], // left, top, right, bottom
+    pageMargins: [40, 20, 40, 20], // left, top, right, bottom
   };
 
   // Pobieranie (download) lub otwieranie (open) PDF
